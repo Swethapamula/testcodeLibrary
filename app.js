@@ -30,6 +30,7 @@ app.use(express.static('./public'));
 app.set ("view engine","ejs");
 app.set("views", "./src/views");
 
+app.use("/adminhome",homeadminrouter);
 
 const Signupdata=require("./src/model/Signupdata");
 
@@ -57,8 +58,6 @@ app.post("/POST", function(req,res){
   if (Item.username=='admin' && Item.password=='12345')
   {
     req.session.role='admin';
-    console.log("admin");
-    console.log(req.session.role);
 
     res.redirect("/adminhome");
   }
@@ -104,7 +103,7 @@ else{
 
   
   var authenticate = function (req, res, next) {  //admin or user
-    console.log(req.session.role);
+    console.log(req.username);
 
     if (req.session.role == 'admin' || req.session.role == 'user') {
         next();
@@ -120,7 +119,6 @@ else{
   app.use('/authors',authorRouter);
   app.use('/home',homeRouter);
   app.use("/admin",adminrouter);
-  app.use("/adminhome",homeadminrouter);
   app.use("/signup",SignupRouter);
   app.use("/viewbooks",viewbookrouter);
   app.use("/viewauthors",viewauthorroute);

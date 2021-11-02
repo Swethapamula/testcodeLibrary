@@ -8,7 +8,8 @@ function router1(nav)
          nav,
          title: 'Library',
          Addbooks: 'Add Books',
-         AddAuthors:"Add Authors"
+         AddAuthors:"Add Authors",
+
          }
            
          );
